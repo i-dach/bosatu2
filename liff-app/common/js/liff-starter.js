@@ -17,7 +17,6 @@ let clickCount = 0;
 // -------------- //
 
 window.onload = () => {
-    document.getElementById('aaa_test').textContent = USER_SERVICE_UUID;
     initializeApp();
 };
 
@@ -49,6 +48,7 @@ function uiToggleLedButton(state) {
 
 function uiCountPressButton() {
     clickCount++;
+    handlerToggleLed()
 
     const el = document.getElementById("click-count");
     el.innerText = clickCount;
