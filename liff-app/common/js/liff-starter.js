@@ -243,9 +243,9 @@ function liffGetPSDIService(service) {
         return characteristic.readValue();
     }).then(value => {
         // Byte array to hex string
-        const psdi = new Uint8Array(value.buffer)
-            .reduce((output, byte) => output + ("0" + byte.toString(16)).slice(-2), "");
-        document.getElementById("device-psdi").innerText = psdi;
+        // const psdi = new Uint8Array(value.buffer)
+        //     .reduce((output, byte) => output + ("0" + byte.toString(16)).slice(-2), "");
+        // document.getElementById("device-psdi").innerText = psdi;
     }).catch(error => {
         uiStatusError(makeErrorMsg(error), false);
     });
