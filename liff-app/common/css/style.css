@@ -95,9 +95,3 @@ body, table {
       max-width: 200px;
       font-family: monospace, monospace;
   }
-
-  div.progress{
-    height:3rem;
-    font-size:1.75rem;
-    margin: auto 1rem;
-  }
