@@ -27,7 +27,6 @@ window.onload = () => {
 function handlerToggleLed() {
     ledState = !ledState;
 
-    uiToggleLedButton(ledState);
     liffToggleDeviceLedState(ledState);
 }
 
@@ -35,24 +34,10 @@ function handlerToggleLed() {
 // UI functions //
 // ------------ //
 
-function uiToggleLedButton(state) {
-    // const el = document.getElementById("btn-led-toggle");
-    // el.innerText = state ? "Switch LED OFF" : "Switch LED ON";
-
-    // if (state) {
-    //   el.classList.add("led-on");
-    // } else {
-    //   el.classList.remove("led-on");
-    // }
-}
-
 function uiCountPressButton() {
     clickCount++;
     handlerToggleLed()
     progressBar()
-
-    // const el = document.getElementById("click-count");
-    // el.innerText = clickCount;
 }
 
 function uiToggleStateButton(pressed) {
@@ -176,9 +161,6 @@ function liffRequestDevice() {
 
 function liffConnectToDevice(device) {
     device.gatt.connect().then(() => {
-        // document.getElementById("device-name").innerText = device.name;
-        // document.getElementById("device-id").innerText = device.id;
-
         // Show status connected
         uiToggleDeviceConnected(true);
 
@@ -205,7 +187,6 @@ function liffConnectToDevice(device) {
             // Reset LED state
             ledState = false;
             // Reset UI elements
-            uiToggleLedButton(false);
             uiToggleStateButton(false);
 
             // Try to reconnect
@@ -241,11 +222,6 @@ function liffGetPSDIService(service) {
     // Get PSDI value
     service.getCharacteristic(PSDI_CHARACTERISTIC_UUID).then(characteristic => {
         return characteristic.readValue();
-    }).then(value => {
-        // Byte array to hex string
-        // const psdi = new Uint8Array(value.buffer)
-        //     .reduce((output, byte) => output + ("0" + byte.toString(16)).slice(-2), "");
-        // document.getElementById("device-psdi").innerText = psdi;
     }).catch(error => {
         uiStatusError(makeErrorMsg(error), false);
     });
