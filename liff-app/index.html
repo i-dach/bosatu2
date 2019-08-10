@@ -6,53 +6,31 @@
 </head>
 
 <body>
-    <h3 class="inactive">忙しさ</h3>
-    <button id="test" class="btn btn-led-toggle" onclick="uiCountPressButton()">Switch LED ON</button>
+    <!-- Title -->
+    <h3 class="inactive">店内の忙しさ</h3>
+    <hr />
+    <p>
+      <img id="loading-animation" class="" src="loading.gif" height="14px" />
+      <span id="status" class="inactive">Device disconnected</span>
+    </p>
+    <button id="test" class="btn btn-led-toggle" onclick="uiCountPressButton()">UIテスト用</button>
     <hr />
     <div class="progress">
         <div id="bussy" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
             0%
         </div>
     </div>
-    <!-- Title -->
-    <h2>LINE Things Starter</h2>
-    <hr />
-    <p>
-      <img id="loading-animation" class="" src="loading.gif" height="14px" />
-      <span id="status" class="inactive">Device disconnected</span>
-    </p>
     <hr />
     <div id="controls" class="hidden">
       <!-- Device Info Table -->
       <table class="device-info-table">
-        <tr>
-          <th class="device-info-cell device-info-key">Name</th>
-          <td class="device-info-cell device-info-val" id="device-name"></td>
-        </tr>
-        <tr>
-          <th class="device-info-cell device-info-key">ID</th>
-          <td class="device-info-cell device-info-val" id="device-id"></td>
-        </tr>
-        <tr>
-          <th class="device-info-cell device-info-key">PSDI</th>
-          <td class="device-info-cell device-info-val" id="device-psdi"></td>
-        </tr>
         <tr>
           <th class="device-info-cell device-info-key">Button state</th>
           <td class="device-info-cell device-info-val">
             <button id="btn-state" class="btn btn-state" disabled>Released</button>
           </td>
         </tr>
-        <tr>
-          <th class="device-info-cell device-info-key">Click count</th>
-          <td class="device-info-cell device-info-val" id="click-count">0</td>
-        </tr>
       </table>
-      <hr />
-      <!-- Toggle LED -->
-      <p>
-        <button id="btn-led-toggle" class="btn btn-led-toggle" onclick="handlerToggleLed()">Switch LED ON</button>
-      </p>
       <hr />
     </div>
     
