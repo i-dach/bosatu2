@@ -36,14 +36,14 @@ function handlerToggleLed() {
 // ------------ //
 
 function uiToggleLedButton(state) {
-    const el = document.getElementById("btn-led-toggle");
-    el.innerText = state ? "Switch LED OFF" : "Switch LED ON";
+    // const el = document.getElementById("btn-led-toggle");
+    // el.innerText = state ? "Switch LED OFF" : "Switch LED ON";
 
-    if (state) {
-      el.classList.add("led-on");
-    } else {
-      el.classList.remove("led-on");
-    }
+    // if (state) {
+    //   el.classList.add("led-on");
+    // } else {
+    //   el.classList.remove("led-on");
+    // }
 }
 
 function uiCountPressButton() {
