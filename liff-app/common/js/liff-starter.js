@@ -52,7 +52,7 @@ function uiCountPressButton() {
     progressBar()
 
     const el = document.getElementById("click-count");
-    // el.innerText = clickCount;
+    el.innerText = clickCount;
 }
 
 function uiToggleStateButton(pressed) {
@@ -60,10 +60,10 @@ function uiToggleStateButton(pressed) {
 
     if (pressed) {
         el.classList.add("pressed");
-        el.innerText = "ボタン反応中！";
+        el.innerText = "Pressed";
     } else {
         el.classList.remove("pressed");
-        el.innerText = "ボタン反応なし";
+        el.innerText = "Released";
     }
 }
 
@@ -176,8 +176,8 @@ function liffRequestDevice() {
 
 function liffConnectToDevice(device) {
     device.gatt.connect().then(() => {
-        // document.getElementById("device-name").innerText = device.name;
-        // document.getElementById("device-id").innerText = device.id;
+        document.getElementById("device-name").innerText = device.name;
+        document.getElementById("device-id").innerText = device.id;
 
         // Show status connected
         uiToggleDeviceConnected(true);
