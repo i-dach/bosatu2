@@ -60,10 +60,10 @@ function uiToggleStateButton(pressed) {
 
     if (pressed) {
         el.classList.add("pressed");
-        el.innerText = "Pressed";
+        el.innerText = "反応中！";
     } else {
         el.classList.remove("pressed");
-        el.innerText = "Released";
+        el.innerText = "反応なし";
     }
 }
 
