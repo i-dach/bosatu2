@@ -130,9 +130,9 @@ function progressBar() {
     // click数に応じて忙しさを％にする
     // とりあえず100席ある想定で
     per = (clickCount / 100 * 100)
-    document.getElementById('bussy').setAttribute('aria-valuenow', per)
-    document.getElementById('bussy').setAttribute('style', 'width: '+per+'%;')
-    document.getElementById('bussy').textContent = per + '%'
+    document.getElementById('bussy').setAttribute('aria-valuenow', per.toFixed(1))
+    document.getElementById('bussy').setAttribute('style', 'width: '+per.toFixed(1)+'%;')
+    document.getElementById('bussy').textContent = per.toFixed(1) + '%'
 }
 
 // -------------- //
