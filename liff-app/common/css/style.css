@@ -9,7 +9,16 @@ body, table {
   p {
       padding: 0pt 14pt;
   }
-  
+
+  body h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  body h3 {
+    font-size: 1.25rem;
+  }
+
   .btn {
       padding: 2pt;
       font-size: 14pt;
@@ -101,3 +110,17 @@ body, table {
     font-size:1.75rem;
     margin: auto 1rem;
   }
+
+#main{
+    width: 90%;
+    margin: auto auto;
+}
+
+  .center {
+      text-align: center;
+  }
+
+#main dl {
+    display: flex;
+    justify-content: space-around;
+}
