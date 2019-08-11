@@ -12,6 +12,9 @@ const PSDI_CHARACTERISTIC_UUID  = '26e2b12b-85f0-4f3f-9fdd-91d114270e6e';
 let ledState = false; // true: LED on, false: LED off
 let clickCount = 0;
 
+// Max Btn 
+const TABLE = 10
+
 // -------------- //
 // On window load //
 // -------------- //
@@ -35,8 +38,23 @@ function handlerToggleLed() {
 // ------------ //
 
 function sound() {
-    // test
-    var flush = new Audio('common/data/decision4.mp3');
+    switch (per = (clickCount / TABLE * 100)) {
+        case per >= 0:
+            flush = new Audio('common/data/decision4.mp3');
+            break;
+        case per < 75:
+            flush = new Audio('common/data/warning1.mp3');
+            break;
+        case per < 100:
+            flush = new Audio('common/data/warning2.mp3');
+            break;
+        case per >= 100:
+            flush = new Audio('common/data/cursor6.mp3');
+            break;
+        default:
+            flush = new Audio('common/data/decision4.mp3');
+    }
+
     flush.play();
 }
 
@@ -121,7 +139,7 @@ function makeErrorMsg(errorObj) {
 function progressBar() {
     // click数に応じて忙しさを％にする
     // とりあえず100席ある想定で
-    per = (clickCount / 100 * 100)
+    per = (clickCount / TABLE * 100)
     document.getElementById('bussy').setAttribute('aria-valuenow', per.toFixed(1))
     document.getElementById('bussy').setAttribute('style', 'width: '+per.toFixed(1)+'%;')
     document.getElementById('bussy').textContent = per.toFixed(1) + '%'
