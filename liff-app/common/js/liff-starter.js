@@ -38,23 +38,29 @@ function handlerToggleLed() {
 // ------------ //
 
 function sound() {
-    switch (per = (clickCount / TABLE * 100)) {
+    per = (clickCount / TABLE * 100);
+    document.getElementById('test').textContent = 'Test: ' + per;
+    switch (true) {
         case per < 50:
             flush = new Audio('common/data/decision4.mp3');
+            console.log("< 50");
             break;
         case per < 75:
             flush = new Audio('common/data/warning1.mp3');
+            console.log("< 75");
             break;
         case per < 100:
             flush = new Audio('common/data/warning2.mp3');
+            console.log("< 100");
             break;
         case per >= 100:
             flush = new Audio('common/data/cursor6.mp3');
+            console.log(flush);
             break;
         default:
+            console.log("def");
             flush = new Audio('common/data/decision4.mp3');
-    }
-
+    }    
     flush.play();
 }
 
