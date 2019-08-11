@@ -11,15 +11,19 @@ const PSDI_CHARACTERISTIC_UUID  = '26e2b12b-85f0-4f3f-9fdd-91d114270e6e';
 // UI settings
 let ledState = false; // true: LED on, false: LED off
 let clickCount = 0;
+let allCnt = clickCount;
 
 // Max Btn 
 const TABLE = 10
+const MENBER = 2
 
 // -------------- //
 // On window load //
 // -------------- //
 
 window.onload = () => {
+    mertar()
+    uiComponetSetter()
     initializeApp();
 };
 
@@ -36,7 +40,7 @@ function handlerToggleLed() {
 // ------------ //
 // UI functions //
 // ------------ //
-mertar()
+
 function mertar() {
     var opts = {
         angle: -0.2, // The span of the gauge arc
@@ -62,6 +66,16 @@ function mertar() {
       gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
       gauge.animationSpeed = 32; // set animation speed (32 is default value)
       gauge.set(1250); // set actual value      
+}
+
+function uiComponetSetter() {
+    calling = document.getElementById('calling')
+    menber = document.getElementById('menber')
+    table = document.getElementById('table')
+
+    calling.textContent = allCnt;
+    menber.textContent = MENBER;
+    table.textContent = TABLE;
 }
 
 function sound() {
@@ -93,14 +107,24 @@ function sound() {
 
 function uiCountDoneButton() {
     if (clickCount > 0) {
-        clickCount--;
+        counter(-1)
         progressBar()
         sound()
     }
 }
 
+function counter(num) {
+    clickCount += num;
+
+    if (clickCount > allCnt) {
+        allCnt = clickCount;
+    }
+
+    uiComponetSetter()
+}
+
 function uiCountPressButton() {
-    clickCount++;
+    counter(1)
     progressBar()
     sound()
 }
