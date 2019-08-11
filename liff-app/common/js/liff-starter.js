@@ -16,7 +16,7 @@ let doneCnt = 0;
 
 // Max Btn 
 const TABLE = 10
-const MENBER = 2
+const MENBER = 4
 
 // UI item
 let gauge
@@ -66,7 +66,7 @@ function mertarInit() {
         };
         var target = document.getElementById('foo'); // your canvas element
         gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-        gauge.maxValue = 1; // set max gauge value
+        gauge.maxValue = 100; // set max gauge value
         gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
         gauge.animationSpeed = 32; // set animation speed (32 is default value)
         gauge.set(0); // set actual value      
@@ -88,9 +88,7 @@ function uiComponetSetter() {
     table.textContent = TABLE;
 }
 
-function sound() {
-    per = (clickCount / TABLE * 100);
-    document.getElementById('test').textContent = 'Test: ' + per;
+function sound(per) {
     switch (true) {
         case per < 50:
             flush = new Audio('common/data/decision4.mp3');
@@ -119,7 +117,6 @@ function uiCountDoneButton() {
     if (clickCount > 0) {
         counter(-1)
         progressBar()
-        sound()
         takometar()
     }
 }
@@ -143,7 +140,6 @@ function counter(num) {
 function uiCountPressButton() {
     counter(1)
     progressBar()
-    sound()
     takometar()
 }
 
@@ -219,16 +215,17 @@ function makeErrorMsg(errorObj) {
 }
 
 function progressBar() {
-    // click数に応じて忙しさを％にする
-    per = (clickCount / TABLE * 100)
+    // 残呼び出し数 / 人数
+    per = ((allCnt - doneCnt) / MENBER * 100)
     document.getElementById('bussy').setAttribute('aria-valuenow', per.toFixed(1))
     document.getElementById('bussy').setAttribute('style', 'width: '+per.toFixed(1)+'%;')
     document.getElementById('bussy').textContent = per.toFixed(1) + '%'
+    sound(per)
 }
 
 function takometar() {
-    // 人数 / 残呼び出し数 * 100
-    per = ((allCnt - doneCnt) / MENBER)
+    // 残呼び出し数 * テーブル数
+    per = ((allCnt - doneCnt) / TABLE * 100)
     console.log('tako: '+per+' MENBER:'+MENBER+' allCnt:'+allCnt+' doneCnt:'+doneCnt)
     mertar(per)
 }
