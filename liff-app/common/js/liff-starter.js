@@ -11,7 +11,8 @@ const PSDI_CHARACTERISTIC_UUID  = '26e2b12b-85f0-4f3f-9fdd-91d114270e6e';
 // UI settings
 let ledState = false; // true: LED on, false: LED off
 let clickCount = 0;
-let allCnt = clickCount;
+let allCnt = 0;
+let doneCnt = 0;
 
 // Max Btn 
 const TABLE = 10
@@ -72,8 +73,10 @@ function uiComponetSetter() {
     calling = document.getElementById('calling')
     menber = document.getElementById('menber')
     table = document.getElementById('table')
+    done = document.getElementById('doneCnt')
 
     calling.textContent = allCnt;
+    done.textContent = doneCnt;
     menber.textContent = MENBER;
     table.textContent = TABLE;
 }
@@ -116,8 +119,14 @@ function uiCountDoneButton() {
 function counter(num) {
     clickCount += num;
 
+    if (num > 0) {
+        allCnt += num;
+    } else {
+        doneCnt++;
+    }
+
     if (clickCount > allCnt) {
-        allCnt = clickCount;
+        allCnt += allCnt;
     }
 
     uiComponetSetter()
