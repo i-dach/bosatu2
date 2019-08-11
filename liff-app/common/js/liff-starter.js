@@ -34,10 +34,17 @@ function handlerToggleLed() {
 // UI functions //
 // ------------ //
 
+function sound() {
+    // test
+    var flush = new Audio('common/data/decision4.mp3');
+    flush.play();
+}
+
 function uiCountPressButton() {
     clickCount++;
     handlerToggleLed()
     progressBar()
+    sound()
 }
 
 function uiToggleStateButton(pressed) {
