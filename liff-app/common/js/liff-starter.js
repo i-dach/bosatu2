@@ -39,6 +39,7 @@ function handlerToggleLed() {
 
 function sound() {
     per = (clickCount / TABLE * 100);
+    document.getElementById('test').textContent = 'Test: ' + per;
     switch (true) {
         case per < 50:
             flush = new Audio('common/data/decision4.mp3');
