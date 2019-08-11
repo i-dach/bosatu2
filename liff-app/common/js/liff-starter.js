@@ -18,12 +18,15 @@ let doneCnt = 0;
 const TABLE = 10
 const MENBER = 2
 
+// UI item
+let gauge
+
 // -------------- //
 // On window load //
 // -------------- //
 
 window.onload = () => {
-    mertar()
+    mertarInit()
     uiComponetSetter()
     initializeApp();
 };
@@ -42,15 +45,15 @@ function handlerToggleLed() {
 // UI functions //
 // ------------ //
 
-function mertar() {
+function mertarInit() {
     var opts = {
         angle: -0.2, // The span of the gauge arc
         lineWidth: 0.2, // The line thickness
         radiusScale: 1, // Relative radius
         pointer: {
-          length: 0.6, // // Relative to gauge radius
-          strokeWidth: 0.035, // The thickness
-          color: '#000000' // Fill color
+            length: 0.6, // // Relative to gauge radius
+            strokeWidth: 0.035, // The thickness
+            color: '#000000' // Fill color
         },
         limitMax: false,     // If false, max value increases automatically if value > maxValue
         limitMin: false,     // If true, the min value of the gauge will be fixed
@@ -60,13 +63,17 @@ function mertar() {
         generateGradient: true,
         highDpiSupport: true,     // High resolution support
         
-      };
-      var target = document.getElementById('foo'); // your canvas element
-      var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-      gauge.maxValue = 3000; // set max gauge value
-      gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
-      gauge.animationSpeed = 32; // set animation speed (32 is default value)
-      gauge.set(1250); // set actual value      
+        };
+        var target = document.getElementById('foo'); // your canvas element
+        gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+        gauge.maxValue = 1; // set max gauge value
+        gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+        gauge.animationSpeed = 32; // set animation speed (32 is default value)
+        gauge.set(0); // set actual value      
+}
+
+function mertar(num) {
+    gauge.set(num); // set actual value      
 }
 
 function uiComponetSetter() {
@@ -113,6 +120,7 @@ function uiCountDoneButton() {
         counter(-1)
         progressBar()
         sound()
+        takometar()
     }
 }
 
@@ -136,6 +144,7 @@ function uiCountPressButton() {
     counter(1)
     progressBar()
     sound()
+    takometar()
 }
 
 function uiToggleStateButton(pressed) {
@@ -211,11 +220,17 @@ function makeErrorMsg(errorObj) {
 
 function progressBar() {
     // click数に応じて忙しさを％にする
-    // とりあえず100席ある想定で
     per = (clickCount / TABLE * 100)
     document.getElementById('bussy').setAttribute('aria-valuenow', per.toFixed(1))
     document.getElementById('bussy').setAttribute('style', 'width: '+per.toFixed(1)+'%;')
     document.getElementById('bussy').textContent = per.toFixed(1) + '%'
+}
+
+function takometar() {
+    // 人数 / 残呼び出し数 * 100
+    per = ((allCnt - doneCnt) / MENBER)
+    console.log('tako: '+per+' MENBER:'+MENBER+' allCnt:'+allCnt+' doneCnt:'+doneCnt)
+    mertar(per)
 }
 
 // -------------- //
