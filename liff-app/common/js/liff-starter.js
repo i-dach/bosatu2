@@ -66,7 +66,6 @@ function sound() {
 
 function uiCountPressButton() {
     clickCount++;
-    handlerToggleLed()
     progressBar()
     sound()
 }
@@ -271,6 +270,7 @@ function liffGetButtonStateCharacteristic(characteristic) {
                 // release
                 uiToggleStateButton(false);
                 uiCountPressButton();
+                handlerToggleLed()
             }
         });
     }).catch(error => {
